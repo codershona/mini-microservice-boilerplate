@@ -28,6 +28,9 @@
 
 # Testing the Posts Service:
 
+ * We can test our post api by using Post Man API by running post and get ethod http which would created a post and by requesting get we will get all our posts which has been created.
+
+ 
 
 
 
