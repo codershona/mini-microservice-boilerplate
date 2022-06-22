@@ -64,7 +64,10 @@
          * {id: '43iji', content: 'yes'}
 
          * BOTH ARE array of comments
+# Quick Comments Service Test:
 
+  * Now I had test API using Postman.
+  * Check the request by using GET/POST Method Http
      
 
 
