@@ -30,7 +30,27 @@
 
  * We can test our post api by using Post Man API by running post and get ethod http which would created a post and by requesting get we will get all our posts which has been created.
 
- 
+ # Implementation of Comments Service:
+
+ * For example, if we imagine we have a comments service where 4 row and they are:
+
+  * <b>Path</b> :
+     * /posts/:id/comments
+     * /posts/:id/comments
+
+  * <b>Method</b> :
+     * POST
+     * GET 
+
+  * <b>Body?</b> :
+
+     * { content: string }
+     * [ - ]
+
+  * <b>Goal</b> :
+
+     * Create a comment associated with the given post ID.
+     * Retrieve all comments associated with the given post ID.
 
 
 
