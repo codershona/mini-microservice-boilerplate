@@ -26,4 +26,8 @@
      * Create a new post 
      * Retrieve all posts
 
+# Testing the Posts Service:
+
+
+
 
