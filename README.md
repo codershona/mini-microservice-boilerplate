@@ -68,7 +68,23 @@
 
   * Now I had test API using Postman.
   * Check the request by using GET/POST Method Http
-     
+
+# React Project Setup:
+
+  * React App:
+      * <b>Posts Service:</b>
+         * Router ----> Posts Feature
+
+      * <b>Comments Service:</b>
+         * Router ----> Comments Feature
+      
+      * App ----> 
+         * PostList  
+            * Comment List
+            * Comment Create
+         * PostCreate
+
+
 
 
 
