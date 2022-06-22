@@ -84,6 +84,11 @@
             * Comment Create
          * PostCreate
 
+      * Installation : axios
+# Building Post Submission Method:
+
+
+
 
 
 
