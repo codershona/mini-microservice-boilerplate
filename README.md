@@ -52,9 +52,9 @@
      * Create a comment associated with the given post ID.
      * Retrieve all comments associated with the given post ID.
 
-     ## Let's build our idea to post our comments:
+## Let's build our idea to post our comments:
 
-        * <b>commentsByPostId:</b>
+   * <b>commentsByPostId:</b>
             * '35p5pj' ----> 
               * {id: 'j325', content: 'great post'}  ---> comment
               * {id: 'a5a5', content: 'neat!'}

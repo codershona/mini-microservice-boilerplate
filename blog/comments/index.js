@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { randomBytes } = require('crypto');
+const { request } = require('https');
 const app = express();
 app.use(bodyParser.json());
 
@@ -11,14 +12,13 @@ app.get('/posts/:id/comments', (req, res) => {
 });
 
 app.post('/posts/:id/comments', (req, res) => {
-   const id = randomBytes(4).toString('hex');
-   const { title } = req.body;
+   const commentId = randomBytes(4).toString('hex');
+   const { content } = req.body;
 
-   posts[id] = {
-    id, title 
-   };
+   const comments = commentsByPostId[req.params.id] || [];
 
-   res.status(201).send(posts[id]);
+   comments.push({ id: commentId, content});
+   commentsByPostId[req.params.id] = comments;
 });
 
 app.listen(4001, () => {
