@@ -55,15 +55,15 @@
 ## Let's build our idea to post our comments:
 
    * <b>commentsByPostId:</b>
-            * '35p5pj' ----> 
-              * {id: 'j325', content: 'great post'}  ---> comment
-              * {id: 'a5a5', content: 'neat!'}
+      * '35p5pj' ----> 
+      * {id: 'j325', content: 'great post'}  ---> comment
+      * {id: 'a5a5', content: 'neat!'}
 
-            * { 'a5uha5' } ---> This is ID of a post ----> 
-               * {id: '15ji', content: 'informative'}  
-              * {id: '43iji', content: 'yes'}
+      * { 'a5uha5' } ---> This is ID of a post ----> 
+         * {id: '15ji', content: 'informative'}  
+         * {id: '43iji', content: 'yes'}
 
-              * BOTH ARE array of comments
+         * BOTH ARE array of comments
 
      
 
