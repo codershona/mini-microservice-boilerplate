@@ -107,6 +107,10 @@
 
  # Request Minimization Strategies:
 
+  * GET /posts/ ----> post -----> GET/posts/:id/comments
+  * Posts and Comments Feature(Posts Service + Comments Service)
+  * Microservice Solution 1: Sync Communication
+  * Microservice Solution 2: Async Communication
  # An Async Solution:
 
  # Common Questions Around Async Events:
