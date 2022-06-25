@@ -98,7 +98,12 @@
 
 # Fetching and Rendering Posts:
   
-  * 
+  * Check the PostList file which has been fetched and render into frontend.
+
+# Creating Comments and Displaying Comments:
+
+ * Check CommentCreate file and check your logic to post and see Chrome Devtools Network that its showing status 201.
+ * To show your comments that you created check commentList file logic which display in our frontend.
 
 
 
