@@ -113,7 +113,25 @@
   * Microservice Solution 2: Async Communication
  # An Async Solution:
 
+ * Microservice Solution 2: Async Communication(Application Behaviour: Event Broker and its goals it to receive notifications from different services. Take those notifications or those events and route them off to all the other services that we are running. That means in short, Receives events send them on to interested parties)
+
+ * POST /posts ----> EventBroker ---> type: PostCreated ---> {id: 'a1343', title: 'new Post'}
+
+ * POST /posts/:id/comments ----> EventBus ---> type: CommentCreated ---> {id: 'a1343', content: 'a comment', postId: '24dsaa'}
+
  # Common Questions Around Async Events:
+
+  * Wait, so you are saying we need to create a new service every time we need to join some data?
+    * <b>ANSWER:</b> Absolutely not! In reality, might not even have posts & comments in separate services in the 1st place.
+   
+   * Who cares that each service is independent?
+     * <b>ANSWER:</b> Independent services + the reliability that brings is one of the core reasons of using microservices in the 1st place.
+
+   * This is so over the top complicated for little benefit?
+     * <b>ANSWER:</b> Seems that way now! Adding in some features starts to get really easy when use this architecture.
+
+   * This system won't correctly in the following scenario.
+     * <b>ANSWER:</b> There are some very special things we need to consider with this design. I have got solutions for most maybe? of the concerns you may have.
 
  # Event Bus Overview:
 
