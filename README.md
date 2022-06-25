@@ -88,8 +88,17 @@
 # Building Post Submission Method:
 
   * Added BootstrapCDN in index.html file and create the PostCreate file to build our logic.
-  
+  * Check Chrome devtools Network and check the XHR request when you try to submit any title on frontend by clicking the button.
 
+# Handling CORS Errors:
+
+  * Install npm install cors package in backend comments and posts folder.
+  * Import cors into comments and posts index.js files.
+  * Check again and Chrome devtools network and try to posts again if you see 201 status then posts has been created successfully.
+
+# Fetching and Rendering Posts:
+  
+  * 
 
 
 
