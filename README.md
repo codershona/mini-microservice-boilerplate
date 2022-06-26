@@ -149,7 +149,7 @@
 # Emitting Event:
 
 * Emitting means pass off/ send out/eject.
-* 
+* Check posts index file and we added axios and async logic.
 
 
 
