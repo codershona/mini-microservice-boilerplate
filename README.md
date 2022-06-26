@@ -140,11 +140,11 @@
  * Many different subtle features that make async communication way easier or way harder.
  * We are going to build own event bus using Express. It will not implement the vast majority of features a normal bus has. 
  * Yes, for our next app we will use a production grade, open source event bus.
- * POST /events -----> POST to localhost:4000/event OR, POST to localhost:4001/event OR, POST to localhost:4002/event.
+ * POST /events -----> POST to localhost:4000/events OR, POST to localhost:4001/events OR, POST to localhost:4002/events.
 
 # A Basic Event Bus Implementation:
 
-* 
+* Check the events folder and run npm init -y and install this packages: express, nodemon, axios, cors.Then create index.js file. 
 
 
 
