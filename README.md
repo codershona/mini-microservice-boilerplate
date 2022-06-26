@@ -146,8 +146,10 @@
 
 * Check the events folder and run npm init -y and install this packages: express, nodemon, axios, cors.Then create index.js file. 
 
+# Emitting Event:
 
-
+* Emitting means pass off/ send out/eject.
+* 
 
 
 
