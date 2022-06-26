@@ -134,7 +134,17 @@
      * <b>ANSWER:</b> There are some very special things we need to consider with this design. I have got solutions for most maybe? of the concerns you may have.
 
  # Event Bus Overview:
+ 
+ * Many different implementations. RabbitMQ, Kafka, NATS...
+ * Receives events, publishes them to listeners.
+ * Many different subtle features that make async communication way easier or way harder.
+ * We are going to build own event bus using Express. It will not implement the vast majority of features a normal bus has. 
+ * Yes, for our next app we will use a production grade, open source event bus.
+ * POST /events -----> POST to localhost:4000/event OR, POST to localhost:4001/event OR, POST to localhost:4002/event.
 
+# A Basic Event Bus Implementation:
+
+* 
 
 
 
