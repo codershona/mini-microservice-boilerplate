@@ -169,22 +169,21 @@
 # Dealing with Missing Events
 # Implenting Events Sync and its action
 
-
-
 # Running Services with Docker:
 ## Deployment Issues:
 * For Example, My computer/Virtual Machine has 4 service which is below:
-   * Posts : Port 4000
 
-   * Comments : Port 4001
+   * (Docker Container) Posts : Port 4000
 
-   * Query : Port 4002
+   * (Docker Container) Comments : Port 4001
 
-   * Moderation : Port 4003
-   * Comments : Port 4006 { This could be in 2nd Virtual Machine }
-   * Comments: 4007 { This could be in 2nd Virtual Machine }
+   * (Docker Container) Query : Port 4002
 
-        * Port 4005 : Event Bus
+   * (Docker Container) Moderation : Port 4003
+   * (Docker Container) Comments : Port 4006 { This could be in 2nd Virtual Machine }
+   * (Docker Container) Comments: 4007 { This could be in 2nd Virtual Machine }
+
+        * (Docker Container) Port 4005 : Event Bus
 
 # Docker but why?
 
