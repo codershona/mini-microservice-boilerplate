@@ -154,6 +154,15 @@
 * Check posts index file and we added axios and async logic.
 
 
+# Emitting Comments Creation Events and Receiving Events are same
+# Creating Data Query Service:
+* Run mkdir query as new folder and check in into it.
+* Then start creating backend service.
+* Install nodemon, express, cors.
+
+# Parsing Incoming Events:
+* 
+
 
 
 
