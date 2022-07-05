@@ -153,16 +153,24 @@
 * Emitting means pass off/ send out/eject.
 * Check posts index file and we added axios and async logic.
 
-
 # Emitting Comments Creation Events and Receiving Events are same
 # Creating Data Query Service:
 * Run mkdir query as new folder and check in into it.
 * Then start creating backend service.
-* Install nodemon, express, cors.
+* Install nodemon, express, cors axios.
 
 # Parsing Incoming Events:
+# Creating the Moderation Service:
+* Run mkdir query as new folder and check in into it.
+* Run npm init -y and then install nodemon express axios 
+# Handling Moderation
+# Updating Comment Content
+# Rendering Comments by Status
+# Dealing with Missing Events
+# Implenting Events Sync and its action
+
+
+
+# Running Services with Docker:
+## Deployment Issues:
 * 
-
-
-
-
