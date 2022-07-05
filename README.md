@@ -173,4 +173,18 @@
 
 # Running Services with Docker:
 ## Deployment Issues:
-* 
+* For Example, My computer/Virtual Machine has 4 service which is below:
+   * Posts : Port 4000
+
+   * Comments : Port 4001
+
+   * Query : Port 4002
+
+   * Moderation : Port 4003
+   * Comments : Port 4006 { This could be in 2nd Virtual Machine }
+   * Comments: 4007 { This could be in 2nd Virtual Machine }
+
+        * Port 4005 : Event Bus
+
+# Docker but why?
+

@@ -24,6 +24,20 @@ app.post("/events", (req, res) => {
   axios.post("http://localhost:4003/events", event).catch((err) => {
     console.log(err.message);
   });
+
+  // axios.post("http://<Put Your IP Address here>:4008/events", event).catch((err) => {
+  //   console.log(err.message);
+  // });
+
+  if (it is not 1am) {
+    axios.post("http://<IP Address>:4006/events", event).catch((err) => {
+    console.log(err.message);
+  });
+  axios.post("http://<IP Address>:4007/events", event).catch((err) => {
+    console.log(err.message);
+  });
+  }
+  
   res.send({ status: "OK" });
 });
 
