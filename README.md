@@ -4,6 +4,8 @@
 # Project Setup:
 * React Install in ```client``` folder
 * Node, express, axios and nodemon install ```npm install axios cors express nodemon``` as well as ```npm init -y``` in ```comments and posts``` folders.
+* Always run ```npm start``` for frontend and backend to see in localhost:3000.
+
 # Implementation of Post Service Creation:
 
 * For example, if we imagine we have a post service where 4 row and they are:
