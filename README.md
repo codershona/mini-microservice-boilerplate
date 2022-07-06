@@ -229,5 +229,108 @@
 
 # Orchestrating Collections of Services with Kubernetes:
 
+* Run ```kubectl version``` to check your kubernetes version.
+* To interact with kubenetes cluster run ```kubectl```.
+* 
+
+
+# Important Kubernetes Terminology:
+
+* <b>Kubernetes</b>:  A collection of nodes + a master to manage them.
+* <b>Node</b>: A virtual machine that will run our containers.
+* <b>Pod</b>: More or less a running container. Technically, a pod can run multiple containers (we won't do this).
+* <b>Deployment</b>: Monitors a set of pods, make sure they are running and restarts them if they crash.
+* <b>Service</b>: Provides an easy to remember URL to access a running container.
+
+# Kubernetes Config Files:
+
+* Kubernetes about the difference Deployments, Pods and Services (referred to as 'Objects') that we want to create.
+
+* Written YAML Syntax.
+* Always store these files with our project source code - they are documentation.
+* We can create Objects without config files - do not do this. Config files provide a precise definition of what your cluster is running.
+* Kubernetes docs will tell you to run direct commands to create objects - only do this for testing purposes.
+* Blog posts will tell you to run direct commands to create objects - close the blog post!
+
+
+# Creating a Pod:
+
+* Go to cd posts folder and run ```docker build -t fislam/posts:0.0.1 .```.
+* Then create infra folder and k8s folder and create posts.yaml file.
+* Next after creating config file and run ```kubectl apply -f posts.yaml```.
+
+* Make your switch your kubernetes into docker-desktop which located in ubuntu top bar of your laptop, check docker icon. If you see this issues in terminal 
+   ```Unable to connect to the server: dial tcp 192.168.49.2:8443: i/o timeout.``` 
+Don't run previous command if you see if settings is in minikube.
+
+
+* Then run ```kubectl get pods```.
+
+
+# ErrImagePull, ErrImageNeverPull and ImagePullBackoff Errors:
+
+* If your pods are showing ErrImagePull, ErrImageNeverPull, or ImagePullBackOff errors after running kubectl apply, the simplest solution is to provide an imagePullPolicy to the pod.
+
+* First, run kubectl delete -f infra/k8s/
+
+* Then, update your pod manifest:
+
+ ``` 
+   spec:
+    containers:
+     - name: posts
+       image: cygnet/posts:0.0.1
+       imagePullPolicy: Never
+ ```
+* Then, run kubectl apply -f infra/k8s/
+
+* This will ensure that Kubernetes will use the image built locally from your image cache instead of attempting to pull from a registry.
+
+#### Minikube Users:
+
+* If you are using a vm driver, you will need to tell Kubernetes to use the Docker daemon running inside of the single node cluster instead of the host.
+
+* Run the following command:
+
+ ```
+   eval $(minikube docker-env)
+ ```
+
+* Note - This command will need to be repeated anytime you close and restart the terminal session.
+
+* Afterward, you can build your image:
+
+ ```
+    docker build -t USERNAME/REPO .
+ ```
+
+* Update, your pod manifest as shown above and then run:
+ ```
+   kubectl apply -f infra/k8s/
+ ```
+* https://minikube.sigs.k8s.io/docs/commands/docker-env/
+
+
+# Understanding a Pod Spec:
+
+* Run ```k get pods``` or, ```kubectl get pods``` on the terminal to see the pods.
+# Some Common Kubectl Commands:  [Including Docker Commands]
+* ```kubectl get pods``` This means Print out information about all of the running pods pods.   -------> ```docker ps```
+
+* ```kubectl exec -it [pod_name][cmd]``` <b>For example:</b> ```kubectl exec -it posts sh```.  Execute the given command in a running pod -------> ```docker exec -it[container id][cmd]```
+
+*  ```kubectl logs [pod_name]``` <b>For example:</b> ```kubectl logs posts```. Print out logs from the given pods -------> ```docker logs[container id]```
+
+*  ```kubectl delete pod[pod_name]``` <b>For example:</b> ```kubectl delete pod posts```.   Deletes the given pod.
+
+* ```kubectl apply -f[config file name]``` Tells Kubernetes to process the config.
+
+*  ```kubectl describe pod[pod_name]```  <b>For example:</b> ```kubectl describe pod posts```. Print out some information about the running pod.
+
+* ```code ~/.zshrc``` [Optional]
+
+# Kubernetes Deployments:
+
+* Deployment has 3 pods and in there all container running image posts image.
 * 
 
