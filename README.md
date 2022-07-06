@@ -332,5 +332,16 @@ Don't run previous command if you see if settings is in minikube.
 # Kubernetes Deployments:
 
 * Deployment has 3 pods and in there all container running image posts image.
-* 
+* Common Commands:
+   * ```kubectl get deployments``` ----> List all the running deployments
+   * ```kubectl describe deployment[depl name]``` -----> Print out details about a specific deployment.
+   * ```kubectl apply -f [config file name] -----> Create a deployment out of a config file.
+   * ```kubectl delete deployment[depl_name]``` ----> Delete a deployment.
+   * ```kubectl describe deployment posts-depl```
 
+   * ```kubectl delete deployment posts-depl```
+   * 
+
+# Updating Kubernetes Deployment:
+
+* 
