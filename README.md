@@ -335,7 +335,7 @@ Don't run previous command if you see if settings is in minikube.
 * Common Commands:
    * ```kubectl get deployments``` ----> List all the running deployments
    * ```kubectl describe deployment[depl name]``` -----> Print out details about a specific deployment.
-   * ```kubectl apply -f [config file name] -----> Create a deployment out of a config file.
+   * ```kubectl apply -f [config file name]``` -----> Create a deployment out of a config file.
    * ```kubectl delete deployment[depl_name]``` ----> Delete a deployment.
    * ```kubectl describe deployment posts-depl```
 
@@ -344,4 +344,22 @@ Don't run previous command if you see if settings is in minikube.
 
 # Updating Kubernetes Deployment:
 
-* 
+* Updating the image used by a deployment - method #1:
+    * Make a changes to your project code.
+    * Rebuild the image, specifying a new image version.
+    * In the deployment config file, update the version of the image.
+    * Run the command ```kubectl apply -f [depl file name]```.
+
+
+    * Run now this command in posts folder : ```docker build -t fislam/posts:0.0.5 .```.
+    * The run ``` kubectl apply -f posts-depl.yaml```.
+    * Next run ```kubectl get pods```.
+    * Next run ```kubectl logs posts-depl-79fb497cc5-rrpqv```.
+
+* Method 2 : 
+    * The deployment must be using the 'latest' tag in the pod spec version.
+    * Make an update to your code.
+    * Build the image.
+    * Push the image to docker hub.
+    * Run the command: ```kubectl rollout restart deployment[depl_name]```.
+    * 
