@@ -438,39 +438,70 @@ Don't run previous command if you see if settings is in minikube.
 
 # How to Communicate between services and Updating Service Addresses:
 
-  *
+  * After adding metadata name removing go to event-bus folder localhost run ```docker build -t islamh/event-bus .```.
 
-  * 
+  * ```docker push islamh/event-bus```.
+  * Now go to posts folder and run ```docker build -t islamh/posts .```.
 
+  * ```docker push islamh/posts```.
+  * ```kubectl get deployments```.
+  * ```kubectl rollout restart deployment posts-depl```.
+  * ```kubectl rollout restart deployment event-bus-depl```
+  * ```kubectl get pods```.
+  
 # Verifying Communication:
 
-  *
-
-  * 
-
+  * Work on Postman API and in localhost add kubernetes ports e.g. 30700 (http://localhost:30700/posts) and run ```kubectl get services```.
+  * ```kubectl get pods```.
+  * ```kubectl logs posts-depl-549fd655b7-fvj62```.
+  
 # Adding Query, Moderation and Comments:
 
-  *
+  * <b>STEPS</b>: Adding More Services: 
+     * For 'comments', 'query', 'moderation'...
+     * Update the URL's in each to reach out to the 'event-bus-srv'.
+     * Build images + push them to docker hub.
+     * Create a deployment + clusterrip service for each.
+     * Update the event-bus to once again send events to 'comments', 'query', and 'moderation'...
 
-  * 
+  * Make all localhost into event-bus-srv.
+  * Go to cd comments and run ```docker build -t islamh/comments .```.
+  * Push the docker ```docker push islamh/comments```.
+
+  * Go to moderation folder and run ```docker build -t islamh/moderation .```.
+  * Do push ```docker push islamh/moderation```.
+
+  Go to query folder and run ```docker build -t islamh/query .```. 
+  * Do push ```docker push islamh/query```.
+
+  * After creating moderation, comments, query file in k8s folder and then run ```kubectl apply -f .``` or ```kubectl apply -f . --validate=false```.
+
+  * Next run ```kubectl get pods```.
+  * Next run ```kubectl describe pods query-depl-7c5f94ff5f-nh8sd```.
+  * Run ```kubectl get services```.
 
 # Testing Communication:
 
-  *
+  * Change localhost into kubenetes all services name as portwise. 
 
-  * 
+  * Run ```docker build -t islamh/event-bus .```.
 
-# Load Balancer Services:
+  * Push it into docker ```docker push islamh/event-bus```.
 
-  *
+  * Run ```kubectl rollout restart deployment```.
+  * Run ```kubectl get deployments```.
+  * Run ```kubectl rollout restart deployment event-bus-depl```.
+  * Run ```kubectl get pods```.
 
-  * 
+  * To test your APi in Postman run this command ```kubectl get services``` to get port number and put it with localhost 
 
-# Load Balancers and Ingress:
+  * Run ```kubectl get pods``` and then run ```kubectl logs comments-depl-6df57bb86f-g2t8t``` or, ```kubectl logs event-bus-depl-75d6f76857-b5jm9``` or, ```kubectl logs moderation-depl-5465db6599-nxrpv```.
+# Load Balancer Services and Load Balancers and Ingress:
 
-  *
+  * Load Balancer Service : Tells Kubernetes to reach out to its provider and provision a load balancer. Gets traffic in to a single pod.
 
-  * 
+  * Ingree or Ingress Controller : A pod with a set of routing rules to distribute traffic to other services.
+  * Our cluster has cloud provider (AWS, GC, Azure) and provision it with Load Balancer services.
 
 # Important - DO NOT SKIP - Ingress Nginx Installation Info:
   
@@ -522,17 +553,21 @@ Don't run previous command if you see if settings is in minikube.
 
 # Installing Ingress-Nginx:
 
-  * 
+  * Go to NGINX Ingress Controller in google browser.
+  
+  [Link](https://kubernetes.github.io/ingress-nginx/deploy/)
 
-  * 
+  [Link](https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml)
+
+  [Link](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
 
 # Writing Ingress Config Files:
 
-  *
+  * Create ingress-srv.yaml file into k8s folder.
 
-  *
-
+  * Go to k8s directory and run ls.
+  * Then run, ```kubectl apply -f ingress-srv.yaml```.
 
 
 # Important Note About Port 80:
@@ -579,9 +614,27 @@ Don't run previous command if you see if settings is in minikube.
 
 # Hosts File Tweak:
 
-  * 
+  * Run ```code etc/hosts``` into k8s folder.
 
-  *
+  * Put this into hosts file :
+
+  ```
+     # localhost is used to configure the loopback interface.
+      # when the system is booting. Do not change this entry.
+      ## 
+      127.0.0.1 localhost
+      255.255.255.255 broadcast
+      ::1             localhost
+      # Added by Docker Desktop
+      # To allow the same kube context to work on the host and the container:
+      127.0.0.1 kubernetes.docker.internal
+      # End of section
+
+      127.0.0.1 posts.com
+
+```
+
+* Go to browser http://posts.com/posts
 
 # Important Note to Add Environment Variable:
 
@@ -592,8 +645,6 @@ Don't run previous command if you see if settings is in minikube.
 [Link](https://github.com/facebook/create-react-app/issues/8688)
 
 [Link](https://github.com/facebook/create-react-app/issues/11779)
-
-
 
   * To solve this, we have to add two environment variables to the Dockerfile in the client folder.  Find the Dockerfile in the client folder and make the following change:
 
