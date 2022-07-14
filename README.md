@@ -353,7 +353,7 @@ Don't run previous command if you see if settings is in minikube.
 
     * Run now this command in posts folder : ```docker build -t fislam/posts:0.0.5 .```.
     * The run ``` kubectl apply -f posts-depl.yaml```.
-    * Next run ```kubectl get pods```.
+    * Next run ```kubectl get pods``` or ```kubectl get deployments```.
     * Next run ```kubectl logs posts-depl-79fb497cc5-rrpqv```.
 
 * Method 2 : 
@@ -362,4 +362,308 @@ Don't run previous command if you see if settings is in minikube.
     * Build the image.
     * Push the image to docker hub.
     * Run the command: ```kubectl rollout restart deployment[depl_name]```.
-    * 
+    
+    * After changes in posts/index file, go to posts folder via terminal then run ```docker build -t fislam/posts .``` or, ```docker build -t islamh/posts .```.
+    * Run to push your build images into your current docker account:```docker push fislam/posts``` or, ```docker push islamh/posts```.
+    * ```kubectl get deployments```.
+    * ```kubectl rollout restart deployment posts-depl```.
+    * ```kubectl get pods```.
+    * ```kubectl logs posts-depl-fc478f9c7-xcmzq``` Or, ```kubectl logs <name>```.
+    
+    * Our cluster is running the latest version of our code.
+
+# Networking with Services:
+
+   * ```kubectl get pods```.
+   * Example: There were 3 pods in Node and 1st one is running Container with Posts image, 2nd one is Same as 1st one.Here Service is providing them. 3rd one is running only Event-Bus. Here event bus is getting from service. 
+
+   * Finally we can say that, Services provide networking between pods.
+
+### There are 4 types of services:
+   * <b>Cluster IP :</b> Sets up an easy to remember URL to access a pod. It only exposes pods in cluster. 
+   
+   *  <b>Node Port :</b> Makes a pod accessible from outside the cluster. Usually only used for dev purposes.
+
+   * <b>Load Balancer :</b> Makes a pod accessible from outside the cluster. This is the right way to expose a pod to the outside world.
+
+   * <b>External Name :</b> Redirects an in-cluster request to a CNAME url...don't worry about this one...
+# Creating s NodePort Service:
+
+  * Create a kubernetes node port service which file name is post-srv.yaml
+
+# Accessing NodePort Services:
+
+  * ``` cd infra/k8s ```
+
+  * ``` kubectl apply -f posts-srv.yaml ```
+
+  * ``` kubectl get services ```
+
+  * ``` kubectl describe service posts-srv ```.
+
+# Setting up Cluster IP Services:
+
+  * In Node we have 2 Pod one is Posts and another one is Event-bus. They both have Cluster IP services.
+
+  * Now 1st Pod which is Posts is connected with ----> 2nd Cluster IP services.
+
+  * Then 2nd Pod which is Event Bus that will be connected with Cluster IP services.and get back again into 1st Pod which was Posts.
+
+# Building a Deployment for the Event Bus:
+
+  * <b>Goals :</b> 
+       * Build an image for the Event Bus.
+
+       * Push the image to Docker Hub
+
+       * Create a deployment for Event Bus.
+
+       * Create a Cluster IP service for Evemt Bus and Posts
+
+       * Wire ti all up!
+
+  * Go to event-bus folder and run this command to build docker ```docker build -t islamh/event-bus .```. 
+
+  * Then run to push the docker ```docker push islamh/event-bus``` command.
+
+  # Adding ClusterIP Services:
+
+  * Now go to infrak8s folder and run ```kubectl apply -f event-bus-depl.yaml``` Or ```kubectl apply -f posts-depl.yaml --validate=false```.
+
+  * To check your created pods run ```kubectl get pods```.
+
+  * Now if you run again it will show unchanged ```kubectl apply -f event-bus-depl.yaml```.
+  * ```kubectl get services```.
+  * Then work on same logic into posts-depl file and run ```kubectl apply -f posts-depl.yaml``` Or, ```kubectl apply -f posts-depl.yaml --validate=false```.
+
+# How to Communicate between services and Updating Service Addresses:
+
+  *
+
+  * 
+
+# Verifying Communication:
+
+  *
+
+  * 
+
+# Adding Query, Moderation and Comments:
+
+  *
+
+  * 
+
+# Testing Communication:
+
+  *
+
+  * 
+
+# Load Balancer Services:
+
+  *
+
+  * 
+
+# Load Balancers and Ingress:
+
+  *
+
+  * 
+
+# Important - DO NOT SKIP - Ingress Nginx Installation Info:
+  
+  * Installing Ingress Nginx. In the video, it is shown that there is a required mandatory command that needed to be run for all providers. This has since been removed, so, the provider-specific commands (Docker Desktop, Minikube, etc) are all that is required. Many students are incorrectly installing the wrong library and are meeting errors and issues. Please triple-check that you are installing Ingress Nginx and not Nginx Ingress, which is a totally different and incompatible library.
+
+  * Note - Windows students should be using Docker Desktop with WSL2 and not Minikube. The Minikube instructions provided below are intended for Linux users only.
+
+ * Installation - Docker Desktop (macOS and Windows WSL2)
+
+[Link](https://kubernetes.github.io/ingress-nginx/deploy/#quick-start)
+
+  * Installation - Minikube (Linux)
+
+[Link](https://kubernetes.github.io/ingress-nginx/deploy/#minikube)
+
+# Ingress v1 API Required Update:
+
+  * When running kubectl apply in the upcoming lecture, you may encounter a warning or error about the v1beta1 API version that is being used.
+
+  * The v1 Ingress API is now required as of Kubernetes v1.22 and the v1beta1 will no longer work.
+
+  * Only a few very minor changes are needed:
+
+[Link](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+
+  * Notably, a pathType needs to be added, and how we specify the backend service name and port has changed:
+
+```
+      apiVersion: networking.k8s.io/v1
+      kind: Ingress
+      metadata:
+        name: ingress-srv
+        annotations:
+          kubernetes.io/ingress.class: nginx
+      spec:
+        rules:
+          - host: posts.com
+            http:
+              paths:
+                - path: /posts
+                  pathType: Prefix
+                  backend:
+                    service:
+                      name: posts-clusterip-srv
+                      port:
+                        number: 4000
+```
+  * The zip resources attached to each lecture will contain the updated v1 API Ingress code if you need it.
+
+# Installing Ingress-Nginx:
+
+  * 
+
+  * 
+
+
+# Writing Ingress Config Files:
+
+  *
+
+  *
+
+
+
+# Important Note About Port 80:
+
+
+  * Editing our hosts file so that we can access posts.com/posts in our browser. If you are unable to access the application you may have something already running on port 80, which is the default port for the ingress. Before doing anything, please make sure you have properly installed the ingress-nginx controller for your particular Kubernetes client.
+
+  * Once you have confirmed that you have indeed installed/enabled the ingress-nginx controller, you'll need to identify if something is running on port 80 and shut it down. Some students have even had applications from other courses or personal projects still running. For Windows Pro users, both SQL Server Reporting Services (MSSQLSERVER) and the World Wide Web Publishing Service / IIS Server have been the most common services causing a conflict.
+
+  * To determine what might be using this port, in your terminal run:
+
+ * Windows
+ * Using Powershell with elevated permissions:
+```
+    netstat -anb
+```
+
+ * Scroll to the top of the returned output and find the listing for port 80. If Docker is properly listening on port 80 you should see:
+
+  * TCP   0.0.0.0:80   0.0.0.0:0   LISTENING [com.docker.backend.exe]
+
+ * If something else is listed for TCP 0.0.0.0:80, you'll need to shut that service down.
+
+  * macOS
+  ```  
+    sudo lsof -i tcp:80
+  ```
+
+  * If Docker is properly listening on port 80 you should see something very similar:
+
+```
+    COMMAND    PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+
+    com.docke 8263 user  113u  IPv6 0xa20e89998489120d      0t0  TCP *:http (LISTEN)
+
+```
+
+* If something else is listed for TCP *:http, you'll need to shut that service down.
+
+
+
+* Note - Minikube users on Windows and macOS should also make sure that they aren't using the docker driver which is not compatible with an ingress as noted here: [Link](https://www.udemy.com/course/microservices-with-node-js-and-react/learn/lecture/23145358#questions)
+
+
+# Hosts File Tweak:
+
+  * 
+
+  *
+
+# Important Note to Add Environment Variable:
+
+ * The next video is going to show the deployment of the React app to our Kubernetes cluster.  The React app will be running in a Docker container.
+
+  * Unfortunately, create-react-app currently has two bugs that prevent it from running correctly in a docker container:
+
+[Link](https://github.com/facebook/create-react-app/issues/8688)
+
+[Link](https://github.com/facebook/create-react-app/issues/11779)
+
+
+
+  * To solve this, we have to add two environment variables to the Dockerfile in the client folder.  Find the Dockerfile in the client folder and make the following change:
+
+```
+  FROM node:16-alpine
+ 
+    # Add the following lines
+      ENV CI=true
+      ENV WDS_SOCKET_PORT=0
+      
+      WORKDIR /app
+      COPY package.json ./
+      RUN npm install
+      COPY ./ ./
+      
+      CMD ["npm", "start"]
+```
+
+Then save the file.  That's it!  Continue on to the next step.
+
+
+# Deploying the React App:
+
+  * 
+
+  *
+
+
+# Unique Route Paths:
+
+ *
+
+ *
+
+# Final Route Config:
+
+  *
+
+  *
+
+# Introduction Skaffold:
+
+  *
+
+  *
+
+
+# Skaffold Setup:
+
+  *
+
+  *
+
+# First Time Skarffold Startup:
+
+  *
+
+  *
+
+# A Few notes on Skaffold:
+
+  *
+
+  *
+
+# Section 5: Architecture of Multi-service Apps:
+
+  *
+
+  * 
+
+
+
