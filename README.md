@@ -698,28 +698,36 @@ Then save the file.  That's it!  Continue on to the next step.
 
 # Introduction Skaffold:
 
-  *
+  * Automates many tasks in a kubernetes dev environment.
 
-  *
+  * Makes it really easy to update code in a running pod.
 
+  * Makes it really easy to create/delete all objects tied to a project at once.
+  * skaffold.dev
+  * https://skaffold.dev/
+  * Install skaffold into your local system.
+  * Go to blog directory via terminal and run ```skaffold```.
+  * Create a ```skaffold.yaml``` file and use your configuration.
 
 # Skaffold Setup:
 
-  *
-
-  *
-
-# First Time Skarffold Startup:
-
-  *
-
-  *
+  * Go to blog directory via terminal and run ```skaffold dev```.
 
 # A Few notes on Skaffold:
 
-  *
+  * Go to blog directory via terminal and run ```skaffold dev```.
 
-  *
+  * Then run ```kubectl get deployments```
+  * Then run ```kubectl get services``` .
+  * Then run ```skaffold dev```.
+
+  * [Notes]: If you find this error : 
+  
+  ```
+    build [islamh/client] failed: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/version": dial unix /var/run/docker.sock: connect: permission denied
+  ```
+
+   * Then run ```sudo chmod 666 /var/run/docker.sock``` will help you to solve the problem.
 
 # Section 5: Architecture of Multi-service Apps:
 
