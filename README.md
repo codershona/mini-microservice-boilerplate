@@ -690,9 +690,11 @@ Then save the file.  That's it!  Continue on to the next step.
 
 # Final Route Config:
 
-  * 
+  * Go to k8s directory via terminal and run ```kubectl apply -f ingress-srv.yaml```  or, ```kubectl apply -f ingress-srv.yaml --validate=false```
 
-  *
+
+  * Run ```kubectl get pods``` you can see which pods are running in the kubernetes.
+  * 
 
 # Introduction Skaffold:
 
