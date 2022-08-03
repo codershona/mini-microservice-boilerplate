@@ -668,20 +668,29 @@ Then save the file.  That's it!  Continue on to the next step.
 
 # Deploying the React App:
 
-  * 
+  * Run ```code etc/hosts``` into k8s folder.
 
-  *
+  * Go to client directory via terminal and run ```docker build -t islamh/client .```
+
+  * Then run ```docker push fislam/client``` or, ```docker push islamh/client```
+  * Then run ```kubectl apply -f client-depl.yaml``` Or, ```kubectl apply -f client-depl.yaml --validate=false```.
 
 
 # Unique Route Paths:
 
- *
+ * Now we will setup all the routing rules for the all the micro services inside our cluster.
 
- *
+ * Go to client directory run ```docker build -t islamh/client .```
+ * Then run ```docker push islamh/client```
+ * To restart the cluster run ```kubectl rollout restart deployment client-depl```
+ 
+ * Go to posts directory via terminal and run ```docker build -t islamh/posts .```
+ * Then run ```docker push islamh/posts```
+ * The  run ```kubectl rollout restart deployment posts-depl```
 
 # Final Route Config:
 
-  *
+  * 
 
   *
 
