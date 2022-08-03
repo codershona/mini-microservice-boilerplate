@@ -601,7 +601,7 @@ Don't run previous command if you see if settings is in minikube.
 ```
     COMMAND    PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
 
-    com.docke 8263 user  113u  IPv6 0xa20e89998489120d      0t0  TCP *:http (LISTEN)
+    com.docker 8263 user  113u  IPv6 0xa20e89998489120d      0t0  TCP *:http (LISTEN)
 
 ```
 
